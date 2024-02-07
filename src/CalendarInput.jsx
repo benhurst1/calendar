@@ -3,19 +3,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dayjs from "dayjs";
 
-export default function CalendarInput({ setStartDate, startDate }) {
-  function parseDate(date) {
-    return dayjs(date).format("DD-MM-YYYY hh:mm");
-  }
-
+export default function CalendarInput({ setStartDate }) {
   function changeHandle(date) {
-    parseDate(date);
-    setStartDate(date);
+    setStartDate(dayjs(date));
   }
 
   return (
     <DatePicker
-      selected={startDate}
+      // selected={startDate.format("DD-MM-YYYY hh:mm")}
       onChange={(date) => changeHandle(date)}
       showTimeSelect
       inline

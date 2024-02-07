@@ -543,12 +543,20 @@ video {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .w-\[400px\] {
   width: 400px;
 }
 
 .flex-col {
   flex-direction: column;
+}
+
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .bg-gray-500 {
