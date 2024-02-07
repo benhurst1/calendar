@@ -43,6 +43,10 @@ function App() {
     setViewName(key);
   }
 
+  function deleteData(key) {
+    localStorage.removeItem(key);
+  }
+
   useEffect(() => {
     calculateTime();
     return () => clearTimeout(timeoutId);
@@ -50,16 +54,17 @@ function App() {
 
   return (
     <div id="mainBody" className="flex gap-10 justify-center">
-      <SavedDates savedDates={savedDates} loadDate={loadDate} />
+      <SavedDates
+        savedDates={savedDates}
+        loadDate={loadDate}
+        deleteData={deleteData}
+      />
       <CalendarInput
         setStartDate={setStartDate}
         startDate={startDate}
         setViewName={setViewName}
       />
-      <div
-        id="timeDisplay"
-        className="flex flex-col justify-between"
-      >
+      <div id="timeDisplay" className="flex flex-col justify-between w-[33%]">
         <TimeDisplay
           totalSeconds={totalSeconds}
           startDate={startDate}

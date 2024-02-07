@@ -1,19 +1,15 @@
-export default function SavedDates({ savedDates, loadDate }) {
-  function clickHandle(e) {
-    loadDate(e.target.value);
-  }
+import SavedDateButton from "./components/SavedDateButton";
 
+export default function SavedDates({ savedDates, loadDate, deleteData }) {
   return (
-    <div className="flex flex-col gap-2 ">
+    <div className="flex flex-col gap-2">
       {savedDates.map((item) => (
-        <button
+        <SavedDateButton
           key={item}
-          value={item}
-          onClick={(e) => clickHandle(e)}
-          className="h-10 w-[200px] rounded-xl bg-slate-200 hover:brightness-95 active:brightness-90"
-        >
-          {item}
-        </button>
+          item={item}
+          loadDate={loadDate}
+          deleteData={deleteData}
+        />
       ))}
     </div>
   );
