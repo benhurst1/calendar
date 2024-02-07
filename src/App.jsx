@@ -19,6 +19,7 @@ function App() {
   const [startDate, setStartDate] = useState(dayjs());
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [savedDates, setSavedDates] = useState(loadStorage());
+  const [viewName, setViewName] = useState("Default");
 
   let timeoutId;
   function calculateTime() {
@@ -32,17 +33,14 @@ function App() {
   }
 
   function saveDate(saveText) {
-    // console.log(savedDates);
-    // savedDates.push(saveText);
-    // console.log(newArray);
     setSavedDates([...savedDates, saveText]);
-    console.log(savedDates);
     localStorage.setItem(saveText, JSON.stringify(startDate));
   }
 
   function loadDate(key) {
     const value = JSON.parse(localStorage.getItem(key));
     setStartDate(dayjs(value));
+    setViewName(key);
   }
 
   useEffect(() => {
@@ -51,11 +49,22 @@ function App() {
   }, [startDate]);
 
   return (
-    <div id="mainBody" className="flex">
+    <div id="mainBody" className="flex gap-10 justify-center">
       <SavedDates savedDates={savedDates} loadDate={loadDate} />
-      <CalendarInput setStartDate={setStartDate} startDate={startDate} />
-      <div id="timeDisplay">
-        <TimeDisplay totalSeconds={totalSeconds} startDate={startDate} />
+      <CalendarInput
+        setStartDate={setStartDate}
+        startDate={startDate}
+        setViewName={setViewName}
+      />
+      <div
+        id="timeDisplay"
+        className="flex flex-col justify-between"
+      >
+        <TimeDisplay
+          totalSeconds={totalSeconds}
+          startDate={startDate}
+          viewName={viewName}
+        />
         <SaveInput saveDate={saveDate} />
       </div>
     </div>

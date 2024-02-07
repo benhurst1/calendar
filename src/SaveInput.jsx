@@ -7,9 +7,13 @@ export default function SaveInput({ saveDate }) {
 
   return (
     <div>
-      <form action="" onSubmit={(e) => submitHandle(e)}>
-        <input type="text" />
-        <input type="submit" value={"Save"} />
+      <form action="" onSubmit={(e) => submitHandle(e)} className="flex gap-5">
+        <input type="text" className="w-30 px-2 rounded-md border-slate-100 shadow" />
+        <input
+          type="submit"
+          value={"Save"}
+          className="bg-slate-200 rounded-md px-10 hover:brightness-95 active:brightness-90"
+        />
       </form>
     </div>
   );
