@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+## Calendar Countdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Got a special date coming up? A birthday? Or want to know exactly how many seconds you have been alive.
+I present a webpage where you can see how many days it has been since an event, or to an event.
 
-## Available Scripts
+Live link: [Date Countdown](https://benhurst1.github.io/date_countdown/)
 
-In the project directory, you can run:
+It will list the number of days, hours, minutes or seconds since or to the date you insert.
+You can also save dates for when you return.
 
-### `npm start`
+### Backstory
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+I created this as a way to easily track the number of days until certain events, such as weddings and holidays.
+I previously made this using plain javascript, but as I moved onto react I wanted to recreate it using components.
+This is still in development and there's a few areas I want to improve, refactor and add.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Features
 
-### `npm test`
+- Uses [react-datepicker](https://github.com/Hacker0x01/react-datepicker) for the calendar input.
+- [dayjs](https://day.js.org/) for creating the date objects.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Future development
 
-### `npm run build`
+- I am using useStates too much and I need to move some of the data handling to useContext.
+  - useStates I will keep for tracking the status of a button, but not for storing the data from localStorage.
+- I'd like to add some pre-made dates in a dropdown tab on the left.
+- A current bug is that when you go to change the time, it reverts back to the current date. And then changing the date, reverts the time back to midnight.
+- Some simple settings to add to local storage also would be good such as a dark mode.
+- I also want to make it responsive and add accessability features.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="/public/imgs/image.png" width="400">
