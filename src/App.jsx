@@ -7,7 +7,11 @@ import SavedDates from "./SavedDates";
 
 // Loading storage into state
 function loadStorage() {
-  return JSON.parse(localStorage.getItem("calendarData"));
+  const items = JSON.parse(localStorage.getItem("calendarData"));
+  if (items == null) {
+    return {};
+  }
+  return items;
 }
 
 function App() {
