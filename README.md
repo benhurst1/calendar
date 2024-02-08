@@ -28,4 +28,4 @@ This is still in development and there's a few areas I want to improve, refactor
 - Some simple settings to add to local storage also would be good such as a dark mode.
 - I also want to make it responsive and add accessability features.
 
-<img src="/public/imgs/image.png" width="400">
+<img src="/public/imgs/image.png" width="800">
