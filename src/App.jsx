@@ -27,7 +27,7 @@ function App() {
     }
     const now = dayjs();
     var time = startDate.diff(now, "second");
-    timeoutId = setTimeout(calculateTime, 500);
+    timeoutId = setTimeout(calculateTime, 1000);
     setTotalSeconds(time);
   }
 

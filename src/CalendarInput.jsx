@@ -3,7 +3,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dayjs from "dayjs";
 
-export default function CalendarInput({ setStartDate, setViewName }) {
+export default function CalendarInput({
+  setStartDate,
+  setViewName,
+  startDate,
+}) {
   function changeHandle(date) {
     setStartDate(dayjs(date));
     setViewName("Custom");
@@ -12,7 +16,7 @@ export default function CalendarInput({ setStartDate, setViewName }) {
   return (
     <div>
       <DatePicker
-        // selected={startDate.format("DD-MM-YYYY hh:mm")}
+        selected={new Date(startDate)}
         onChange={(date) => changeHandle(date)}
         showTimeSelect
         inline
