@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../App";
 
-export default function SavedDateButton({ item, loadDate, deleteData }) {
+export default function SavedDateButton({ item }) {
   const [hidden, setHidden] = useState(true);
   const [deleted, setDeleted] = useState(false);
+
+  const { loadDate, deleteData } = useContext(AppContext);
 
   function clickHandle(e) {
     loadDate(e.target.value);

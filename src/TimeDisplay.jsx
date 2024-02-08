@@ -1,4 +1,8 @@
-export default function TimeDisplay({ totalSeconds, startDate, viewName }) {
+import { useContext } from "react";
+import App, { AppContext } from "./App";
+export default function TimeDisplay() {
+  const { viewName, startDate, totalSeconds } = useContext(AppContext);
+
   const seconds = roundTime(totalSeconds);
   const minutes = roundTime(seconds / 60);
   const hours = roundTime(minutes / 60);

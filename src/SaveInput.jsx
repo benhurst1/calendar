@@ -1,4 +1,9 @@
-export default function SaveInput({ saveDate }) {
+import { useContext } from "react";
+import { AppContext } from "./App";
+
+export default function SaveInput() {
+  const { saveDate } = useContext(AppContext);
+
   function submitHandle(e) {
     e.preventDefault();
     saveDate(e.target[0].value);
@@ -8,7 +13,10 @@ export default function SaveInput({ saveDate }) {
   return (
     <div>
       <form action="" onSubmit={(e) => submitHandle(e)} className="flex gap-5">
-        <input type="text" className="w-30 px-2 rounded-md border-slate-100 shadow" />
+        <input
+          type="text"
+          className="w-30 px-2 rounded-md border-slate-100 shadow"
+        />
         <input
           type="submit"
           value={"Save"}

@@ -1,9 +1,11 @@
 import CalendarInput from "./CalendarInput";
 import TimeDisplay from "./TimeDisplay";
 import SaveInput from "./SaveInput";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import dayjs from "dayjs";
 import SavedDates from "./SavedDates";
+
+export const AppContext = createContext(null);
 
 // Loading storage into state
 function loadStorage() {
@@ -56,26 +58,28 @@ function App() {
   }, [startDate]);
 
   return (
-    <div id="mainBody" className="flex gap-10 justify-center">
-      <SavedDates
-        savedDates={savedDates}
-        loadDate={loadDate}
-        deleteData={deleteData}
-      />
-      <CalendarInput
-        setStartDate={setStartDate}
-        startDate={startDate}
-        setViewName={setViewName}
-      />
+    <AppContext.Provider
+      value={{
+        startDate,
+        setStartDate,
+        viewName,
+        setViewName,
+        totalSeconds,
+        saveDate,
+        savedDates,
+        loadDate,
+        deleteData,
+      }}
+      id="mainBody"
+      className="flex gap-10 justify-center"
+    >
+      <SavedDates />
+      <CalendarInput />
       <div id="timeDisplay" className="flex flex-col justify-between w-[33%]">
-        <TimeDisplay
-          totalSeconds={totalSeconds}
-          startDate={startDate}
-          viewName={viewName}
-        />
-        <SaveInput saveDate={saveDate} />
+        <TimeDisplay />
+        <SaveInput />
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 
