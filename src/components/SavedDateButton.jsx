@@ -9,7 +9,6 @@ export default function SavedDateButton({ item, loadDate, deleteData }) {
 
   function deleteButtonClickHandle(e) {
     deleteData(e.target.value);
-    delete e.target
   }
 
   function mouseHover() {

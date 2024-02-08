@@ -7,12 +7,7 @@ import SavedDates from "./SavedDates";
 
 // Loading storage into state
 function loadStorage() {
-  const items = { ...localStorage };
-  const keys = [];
-  for (const key in items) {
-    keys.push(key);
-  }
-  return keys;
+  return JSON.parse(localStorage.getItem("calendarData"));
 }
 
 function App() {
@@ -33,18 +28,22 @@ function App() {
   }
 
   function saveDate(saveText) {
-    setSavedDates([...savedDates, saveText]);
-    localStorage.setItem(saveText, JSON.stringify(startDate));
+    const newSavedDates = savedDates;
+    newSavedDates[saveText] = startDate;
+    setSavedDates(newSavedDates);
+    localStorage.setItem("calendarData", JSON.stringify(savedDates));
   }
 
   function loadDate(key) {
-    const value = JSON.parse(localStorage.getItem(key));
-    setStartDate(dayjs(value));
+    setStartDate(dayjs(savedDates[key]));
     setViewName(key);
   }
 
   function deleteData(key) {
-    localStorage.removeItem(key);
+    const newSavedDates = savedDates;
+    delete newSavedDates[key];
+    setSavedDates(newSavedDates);
+    localStorage.setItem("calendarData", JSON.stringify(savedDates));
   }
 
   useEffect(() => {
