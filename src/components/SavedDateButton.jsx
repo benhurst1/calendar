@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function SavedDateButton({ item, loadDate, deleteData }) {
   const [hidden, setHidden] = useState(true);
+  const [deleted, setDeleted] = useState(false);
 
   function clickHandle(e) {
     loadDate(e.target.value);
@@ -9,6 +10,7 @@ export default function SavedDateButton({ item, loadDate, deleteData }) {
 
   function deleteButtonClickHandle(e) {
     deleteData(e.target.value);
+    setDeleted(true);
   }
 
   function mouseHover() {
@@ -18,7 +20,9 @@ export default function SavedDateButton({ item, loadDate, deleteData }) {
   return (
     <div
       key={`${item}Row`}
-      className="w-full flex gap-3 items-center"
+      className={`w-full flex gap-3 items-center transition-all duration-200 ${
+        deleted && "translate-x-[100%]"
+      }`}
       onMouseEnter={mouseHover}
       onMouseLeave={mouseHover}
     >

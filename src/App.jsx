@@ -23,7 +23,7 @@ function App() {
     }
     const now = dayjs();
     var time = startDate.diff(now, "second");
-    timeoutId = setTimeout(calculateTime, 1000);
+    timeoutId = setTimeout(calculateTime, 500);
     setTotalSeconds(time);
   }
 
