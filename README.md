@@ -18,14 +18,13 @@ This is still in development and there's a few areas I want to improve, refactor
 
 - Uses [react-datepicker](https://github.com/Hacker0x01/react-datepicker) for the calendar input.
 - [dayjs](https://day.js.org/) for creating the date objects.
+- First time with useContext, much easier to store and reference data than using useStates and props.
 
 ### Future development
 
-- I am using useStates too much and I need to move some of the data handling to useContext.
-  - useStates I will keep for tracking the status of a button, but not for storing the data from localStorage.
 - I'd like to add some pre-made dates in a dropdown tab on the left.
-- A current bug is that when you go to change the time, it reverts back to the current date. And then changing the date, reverts the time back to midnight.
 - Some simple settings to add to local storage also would be good such as a dark mode.
 - I also want to make it responsive and add accessability features.
+- A small bug is that when saving a date, it doesn't automatically refresh the saved dates list.
 
 <img src="/public/imgs/image.png" width="800">
