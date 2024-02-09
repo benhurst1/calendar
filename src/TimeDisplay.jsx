@@ -1,18 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import App, { AppContext } from "./App";
+import dayjs from "dayjs";
 export default function TimeDisplay() {
-  const { viewName, startDate, totalSeconds } = useContext(AppContext);
+  const { viewName, startDate } = useContext(AppContext);
+  const [totalSeconds, setTotalSeconds] = useState(0);
 
-  const seconds = roundTime(totalSeconds);
-  const minutes = roundTime(seconds / 60);
-  const hours = roundTime(minutes / 60);
-  const days = roundTime(hours / 24);
+  let timeoutId;
+  function calculateTime() {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(calculateTime, 1000);
+    setTotalSeconds(startDate.diff(dayjs(), "second"));
+  }
+  useEffect(() => {
+    calculateTime();
+    return () => clearTimeout(timeoutId);
+  }, [startDate]);
 
   const items = [
-    { id: 0, label: "days", time: days },
-    { id: 1, label: "hours", time: hours },
-    { id: 2, label: "minutes", time: minutes },
-    { id: 3, label: "seconds", time: seconds },
+    { id: 3, label: "seconds", time: roundTime(totalSeconds) },
+    { id: 2, label: "minutes", time: roundTime(totalSeconds / 60) },
+    { id: 1, label: "hours", time: roundTime(totalSeconds / 60 / 60) },
+    { id: 0, label: "days", time: roundTime(totalSeconds / 24 / 60 / 60) },
   ];
 
   function roundTime(number) {
@@ -29,7 +39,7 @@ export default function TimeDisplay() {
         <div className="text-center">
           {totalSeconds > 0 ? "Future" : "Past"}
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col-reverse">
           {items.map((item) => (
             <div key={item.id} className="flex gap-3">
               <div className=" w-[50%] text-right">{item.time}</div>

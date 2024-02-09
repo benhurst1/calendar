@@ -18,26 +18,20 @@ function loadStorage() {
 
 function App() {
   const [startDate, setStartDate] = useState(dayjs());
-  const [totalSeconds, setTotalSeconds] = useState(0);
   const [savedDates, setSavedDates] = useState(loadStorage());
   const [viewName, setViewName] = useState("Default");
 
-  let timeoutId;
-  function calculateTime() {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    const now = dayjs();
-    var time = startDate.diff(now, "second");
-    timeoutId = setTimeout(calculateTime, 1000);
-    setTotalSeconds(time);
-  }
+  //Every second recalculates the time and refreshes the page
 
   function saveDate(saveText) {
+    if (saveText in savedDates) {
+      return false;
+    }
     const newSavedDates = savedDates;
     newSavedDates[saveText] = startDate;
     setSavedDates(newSavedDates);
     localStorage.setItem("calendarData", JSON.stringify(savedDates));
+    return true;
   }
 
   function loadDate(key) {
@@ -52,11 +46,6 @@ function App() {
     localStorage.setItem("calendarData", JSON.stringify(savedDates));
   }
 
-  useEffect(() => {
-    calculateTime();
-    return () => clearTimeout(timeoutId);
-  }, [startDate]);
-
   return (
     <AppContext.Provider
       value={{
@@ -64,20 +53,19 @@ function App() {
         setStartDate,
         viewName,
         setViewName,
-        totalSeconds,
         saveDate,
         savedDates,
         loadDate,
         deleteData,
       }}
-      id="mainBody"
-      className="flex gap-10 justify-center"
     >
-      <SavedDates />
-      <CalendarInput />
-      <div id="timeDisplay" className="flex flex-col justify-between w-[33%]">
-        <TimeDisplay />
-        <SaveInput />
+      <div id="mainBody" className="flex gap-20 justify-center">
+        <SavedDates />
+        <CalendarInput />
+        <div id="timeDisplay" className="flex flex-col justify-between w-[33%]">
+          <TimeDisplay />
+          <SaveInput />
+        </div>
       </div>
     </AppContext.Provider>
   );
